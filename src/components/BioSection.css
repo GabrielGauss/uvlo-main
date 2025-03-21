@@ -1,0 +1,118 @@
+#bio {
+  color: #f8f8f8;
+  padding: 80px;
+  margin: 10vh auto;
+  position: relative;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#bio h1 {
+  text-align: left;
+  font-size: 4rem;
+  color: #242424;
+  text-decoration: underline;
+  text-decoration-color: #FFDB1F;
+  text-decoration-thickness: 12px;
+  text-underline-offset: 24px;
+  width: fit-content;
+  margin-bottom: 40px;
+}
+
+.bio-content {
+  background-color: #242424;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 60%;
+  padding: 80px;
+  position: relative;
+}
+
+.bio-content p {
+  color: #f8f8f8;
+  flex-grow: 1;
+  padding-right: 20px;
+  font-size: medium;
+  line-height: 3vh;
+  font-family: lato-bold;
+}
+
+.bio-content h2 {
+  color: #f8f8f8;
+  flex-grow: 1;
+  padding-right: 20px;
+  font-size: larger;
+  line-height: 3vh;
+  font-family: lato-bold;
+}
+
+.image-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -160px;
+}
+
+.bio-images {
+  display: flex;
+  flex-direction: column;
+}
+
+.bio-images img {
+  width: 250px;
+  margin-bottom: 40px;
+}
+
+.read-more-button {
+  display: none; /* Oculta el botón en pantallas de escritorio */
+}
+
+/* Estilos para Mobile */
+@media (max-width: 768px) {
+  #bio {
+      padding: 20px;
+      width: 95%;
+      margin: 20px auto;
+  }
+
+  .bio-content {
+      width: 95%;
+      flex-direction: column;
+  }
+
+  .bio-content p {
+      padding-right: 0;
+      line-height: 3.5vh;
+  }
+
+  .image-container {
+      position: static;
+      transform: none;
+      margin-top: 20px;
+      text-align: center;
+  }
+
+  .bio-images {
+      flex-direction: row;
+      justify-content: center;
+  }
+
+  .bio-images img {
+      width: 45%;
+      margin: 0 5px;
+  }
+
+  .read-more-button {
+      display: block; /* Muestra el botón en móviles */
+      background-color: transparent;
+      color: #FFDB1F;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+  }
+}

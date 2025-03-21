@@ -1,0 +1,61 @@
+/* Estilos para la sección principal */
+.music-player {
+    background-color: #f8f8f8;
+    padding: 30px 0 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.music-player h1 {
+    font-size: 3rem;
+    background-color: #FFDB1F;
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 2rem;
+        margin-bottom: 3rem ; /* Elimina el margen inferior para que el fondo amarillo cubra todo */
+}
+
+/* Estilos para el contenedor del reproductor */
+.music-player-container {
+    display: flex;
+    justify-content: center;
+    height: 600px;
+    width: 60vw;
+    max-height: 600px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.music-player-container iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
+/* Estilos para el SVG */
+.svg-fondo {
+    margin: 0rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: -180px; /* Agregado margen superior negativo */
+}
+
+.svg-fondo svg {
+    width: 100%;
+    height: auto;
+}
+
+/* Estilos específicos para móvil */
+@media (max-width: 768px) { /* Ajusta el ancho según tus necesidades */
+    .music-player h1 {
+        background-color: #FFDB1F;
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 2rem;
+        margin-bottom: 3rem ; /* Elimina el margen inferior para que el fondo amarillo cubra todo */
+    }
+}

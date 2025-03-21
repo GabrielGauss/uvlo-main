@@ -1,0 +1,32 @@
+body, html {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  font-family:boldonse-regular, Lato-regular,Lato-bold, Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+      flex-direction: column;
+  }
+}

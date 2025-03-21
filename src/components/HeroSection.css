@@ -1,0 +1,46 @@
+/* Contenedor principal */
+.hero-section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #242424; /* Color de fondo en desktop */
+}
+
+/* Sección con imagen de fondo */
+.main-section {
+  background-image: url('../assets/bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 90vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+
+/* Logo */
+.logo {
+  width: 50%;
+  height: auto;
+}
+
+/* Ajustes en pantallas móviles */
+@media (max-width: 768px) {
+  .hero-section {
+      background-color: transparent; /* Elimina el fondo en mobile */
+  }
+
+  .main-section {
+      width: 100vw;
+      height: 100vh; /* Cambiado a 100vh para cubrir toda la altura */
+  }
+
+  .logo {
+      width: 70%; /* Ajusta el tamaño del logo en móviles */
+  }
+}

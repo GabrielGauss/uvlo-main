@@ -4,10 +4,10 @@ import gabiIMG from '../assets/foto-gabi.png';
 import facuIMG from '../assets/foto-romer.png';
 
 const BioSection = () => {
-  const [showFullText, setShowFullText] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+const [showFullText, setShowFullText] = useState(false);
+const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  useEffect(() => {
+useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };

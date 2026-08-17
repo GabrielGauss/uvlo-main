@@ -18,7 +18,7 @@ function Navbar() {
         const navRect = navRef.current.getBoundingClientRect();
         setShowFixedNav(navRect.bottom < 0);
 
-        const sections = ["video", "bio", "music", "footer"];
+        const sections = ["video", "bio", "music", "contact"];
         let currentSection = "video";
         for (const sectionId of sections) {
           const section = document.getElementById(sectionId);
@@ -70,7 +70,7 @@ function Navbar() {
           <li><a href="#video" onClick={(e) => scrollToSection("video", e)}>VIDEO</a></li>
           <li><a href="#bio" onClick={(e) => scrollToSection("bio", e)}>BIO</a></li>
           <li><a href="#music" onClick={(e) => scrollToSection("music", e)}>MÚSICA</a></li>
-          <li><a href="#footer" onClick={(e) => scrollToSection("footer", e)}>CONTACTO</a></li>
+          <li><a href="#contact" onClick={(e) => scrollToSection("contact", e)}>CONTACTO</a></li>
         </ul>
 
         <div className={`menu-toggle ${menuOpen ? "active" : ""}`} onClick={toggleMenu}>
@@ -84,16 +84,16 @@ function Navbar() {
         <div className="fixed-nav">
           <ul className="vertical-bars">
             <li className={activeSection === "video" ? "active" : ""} title="Video">
-              <a href="#video" onClick={(e) => scrollToSection("video", e)}></a>
+              <a href="#video" onClick={(e) => scrollToSection("video", e)}><span className="sr-only">Ir a Video</span></a>
             </li>
             <li className={activeSection === "bio" ? "active" : ""} title="Bio">
-              <a href="#bio" onClick={(e) => scrollToSection("bio", e)}></a>
+              <a href="#bio" onClick={(e) => scrollToSection("bio", e)}><span className="sr-only">Ir a Bio</span></a>
             </li>
             <li className={activeSection === "music" ? "active" : ""} title="Música">
-              <a href="#music" onClick={(e) => scrollToSection("music", e)}></a>
+              <a href="#music" onClick={(e) => scrollToSection("music", e)}><span className="sr-only">Ir a Música</span></a>
             </li>
-            <li className={activeSection === "footer" ? "active" : ""} title="Contacto">
-              <a href="#footer" onClick={(e) => scrollToSection("footer", e)}></a>
+            <li className={activeSection === "contact" ? "active" : ""} title="Contacto">
+              <a href="#contact" onClick={(e) => scrollToSection("contact", e)}><span className="sr-only">Ir a Contacto</span></a>
             </li>
           </ul>
           <button className="go-top-button" onClick={scrollToTop} title="Ir arriba">

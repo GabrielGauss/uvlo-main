@@ -14,7 +14,7 @@ const Footer = () => {
                     <img src={logo} alt="Logo Último Velo" />
                 </div>
                 <div className="footer-email">
-                    CONTACTO@ULTIMOVELO.COM
+                    ULTIMOVELO@GMAIL.COM
                 </div>
                 <div className="footer-socials">
                     <a href="https://www.facebook.com/UltimoVeloARG/?locale=es_LA" target="_blank" rel="noopener noreferrer">

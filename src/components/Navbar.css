@@ -26,7 +26,7 @@
 }
 
 .nav-links li a {
-  font-family: "baldonsense", ;
+  font-family: "Boldonse-Regular", "Lato-Regular", "Lato-Bold", sans-serif;
   text-decoration: none;
   color: #333;
   font-weight: bold;
@@ -124,7 +124,7 @@
   border-radius: 5px;
   white-space: nowrap;
   font-size: 14px;
-  font-family: "baldonsense", ; /* Asegura que la fuente se aplica */
+  font-family: "Boldonse-Regular", "Lato-Regular", "Lato-Bold", sans-serif;
 }
 
 .go-top-button {
@@ -152,6 +152,17 @@
   height: 60px;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 
 /* Estilos para pantallas pequeñas (menú hamburguesa) */

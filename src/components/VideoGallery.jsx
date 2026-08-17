@@ -1,76 +1,42 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
+import Glide from "@glidejs/glide";
 import "./VideoGallery.css";
+import "@glidejs/glide/dist/css/glide.core.min.css";
+import "@glidejs/glide/dist/css/glide.theme.min.css";
 import latestImage from "../assets/corner001.png";
 
 const VideoGallery = ({ videoIds }) => {
-    const carouselRef = useRef(null);
-    const [currentIndex, setCurrentIndex] = useState(1);
-    const transitionRef = useRef(true);
-    const touchStartX = useRef(null);
-
-    const videos = [videoIds[videoIds.length - 1], ...videoIds, videoIds[0]];
+    const glideRef = useRef(null);
 
     useEffect(() => {
-        if (carouselRef.current) {
-            const videoWidth = carouselRef.current.children[0].offsetWidth;
-            carouselRef.current.style.transition = transitionRef.current ? "transform 0.5s ease-in-out" : "none";
-            carouselRef.current.style.transform = `translateX(calc(-${currentIndex * videoWidth}px + 10%))`;
+        if (glideRef.current) {
+            const glide = new Glide(glideRef.current, {
+                type: 'carousel',
+                perView: 2.2, // Show more than 2 slides
+                focusAt: 'center', // Center the focused video
+                startAt: 3, // Start at the 4th video (index 3)
+                gap: 24, // Wider gap
+                rewind: false,
+                bound: false,
+                breakpoints: {
+                    800: { perView: 1 },
+                    480: { perView: 1 }
+                }
+            });
+            glide.on('run.after', () => {
+                // Add custom class to active indicator for styling
+                document.querySelectorAll('.video-indicators .indicator').forEach((el, idx) => {
+                    el.classList.toggle('active', idx === glide.index);
+                });
+                // Add custom class to active slide for scaling
+                document.querySelectorAll('.glide__slide').forEach((el, idx) => {
+                    el.classList.toggle('focused-slide', el.classList.contains('glide__slide--active'));
+                });
+            });
+            glide.mount();
+            return () => glide.destroy();
         }
-    }, [currentIndex]);
-
-    const handleNext = () => {
-        transitionRef.current = true;
-        setCurrentIndex((prevIndex) => prevIndex + 1);
-    };
-
-    const handlePrev = () => {
-        transitionRef.current = true;
-        setCurrentIndex((prevIndex) => prevIndex - 1);
-    };
-
-    const handleIndicatorClick = (index) => {
-        transitionRef.current = true;
-        setCurrentIndex(index + 1);
-    };
-
-    useEffect(() => {
-        if (currentIndex === videos.length - 1) {
-            setTimeout(() => {
-                transitionRef.current = false;
-                setCurrentIndex(1);
-            }, 500);
-        } else if (currentIndex === 0) {
-            setTimeout(() => {
-                transitionRef.current = false;
-                setCurrentIndex(videos.length - 2);
-            }, 500);
-        }
-    }, [currentIndex, videos.length]);
-
-    const handleTouchStart = (e) => {
-        touchStartX.current = e.touches[0].clientX;
-    };
-
-    const handleTouchMove = (e) => {
-        if (touchStartX.current === null) {
-            return;
-        }
-
-        const touchX = e.touches[0].clientX;
-        const diffX = touchStartX.current - touchX;
-
-        if (diffX > 50) {
-            handleNext();
-            touchStartX.current = null;
-        } else if (diffX < -50) {
-            handlePrev();
-            touchStartX.current = null;
-        }
-    };
-
-    const handleTouchEnd = () => {
-        touchStartX.current = null;
-    };
+    }, [videoIds]);
 
     return (
         <div className="latest-section" id="video">
@@ -80,36 +46,35 @@ const VideoGallery = ({ videoIds }) => {
             <div className="latest-image-container">
                 <img src={latestImage} alt="Latest" className="latest-image" />
             </div>
-            <div className="video-gallery"
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-            >
-                <div className="video-carousel-wrapper">
-                    <div className="video-carousel" ref={carouselRef}>
-                        {videos.map((videoId, index) => (
-                            <div className={`video-item ${index === currentIndex ? "active" : ""}`} key={index}>
-                                <iframe
-                                    src={`https://www.youtube.com/embed/${videoId}`}
-                                    title={`Video ${index}`}
-                                    frameBorder="0"
-                                    allow="autoplay; encrypted-media; picture-in-picture"
-                                    allowFullScreen
-                                ></iframe>
-                            </div>
+            <div className="glide" ref={glideRef}>
+                <div className="glide__track" data-glide-el="track">
+                    <ul className="glide__slides">
+                        {videoIds.map((videoId, index) => (
+                            <li className="glide__slide" key={index}>
+                                <div className="video-item active">
+                                    <iframe
+                                        src={`https://www.youtube.com/embed/${videoId}`}
+                                        title={`Video ${index}`}
+                                        frameBorder="0"
+                                        allow="autoplay; encrypted-media; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
-                <div className="controls">
-                    <button className="prev" onClick={handlePrev}>&lt;</button>
-                    <button className="next" onClick={handleNext}>&gt;</button>
+                <div className="glide__arrows" data-glide-el="controls">
+                    <button className="glide__arrow glide__arrow--left" data-glide-dir="<">&lt;</button>
+                    <button className="glide__arrow glide__arrow--right" data-glide-dir=">">&gt;</button>
                 </div>
-                <div className="video-indicators">
+                <div className="glide__bullets" data-glide-el="controls[nav]">
                     {videoIds.map((_, index) => (
-                        <div
+                        <button
                             key={index}
-                            className={`indicator ${index === currentIndex - 1 ? "active" : ""}`}
-                            onClick={() => handleIndicatorClick(index)} // Añadido el evento onClick
+                            className="glide__bullet"
+                            data-glide-dir={`=${index}`}
+                            aria-label={`Ir al video ${index + 1}`}
                         />
                     ))}
                 </div>
